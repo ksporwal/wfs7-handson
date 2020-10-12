@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<bean id = "profileDAO" class = "com.hsbc.model.dao.ProfileDaoImpl">
+		<property name = "dbUtility" ref = "db"></property>
+	</bean>
+	
+	<bean id = "service" class = "com.hsbc.model.service.ProfileServiceImpl">
+		<property name="dao" ref = "profileDAO"></property> <!-- setter injection -->
+	</bean>
+	
+	
+	<bean id = "db" class = "com.hsbc.model.dao.DBUtility">
+		<property name = "driverClass" value = "org.apache.derby.jdbc.ClientDriver"></property>
+		<property name="url" value = "jdbc:derby://localhost:1527/wfs7_batch"></property>
+		<property name="username" value = "admin"></property>
+		<property name="password" value = "admin"></property>
+	</bean>
+</beans>
